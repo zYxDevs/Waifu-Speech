@@ -55,11 +55,7 @@ class TextToSpeech:
         try:
             url = f"https://api.tts.quest/v1/voicevox/?text={self.text}&speaker={speaker_id}"
             response = requests.get(url).json()
-            if response["success"] == True:
-                audio_url = response["mp3DownloadUrl"]
-                return audio_url
-            else:
-                return None
+            return response["mp3DownloadUrl"] if response["success"] == True else None
         except:
             return None
 
